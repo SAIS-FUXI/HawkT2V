@@ -1,0 +1,114 @@
+dataset: t2v_offline
+video_folder: ''
+image_path_list: ''
+video_path_list: ''
+neg_text_embedding_path:  "pretrained_models/text_encoder/null_embedd.pkl"
+
+input_valid_list: 'samples/test_prompt.json'
+
+
+checkpoint: 'pretrained_models/transformer/diffusion_pytorch_model.pt'
+
+
+results_dir: './results/'
+
+pretrained_model_path: "pretrained_models/"
+pretrained_text_model_path: "pretrained_models/text_encoder/"
+pretrained: ''
+## vae
+vae_config: "pretrained_models/vae/config.yaml"
+vae_model_path: "pretrained_models/vae/diffusion_pytorch_model.bin"
+decode_length: 5
+
+
+offline_text_feat: False
+#
+offline_text_feat_dir: ''
+
+model: HawkT2V
+HawkT2V:
+  activation_fn: gelu-approximate
+  attention_bias: true
+  attention_head_dim: 72
+  attention_type: default
+  caption_channels: 4096
+  cross_attention_dim: 1728
+  double_self_attention: false
+  dropout: 0.0
+  in_channels: 8
+  out_channels: 16
+  norm_elementwise_affine: false
+  norm_eps: 1.0e-06
+  norm_num_groups: 32
+  norm_type: ada_norm_single
+  num_attention_heads: 24
+  num_embeds_ada_norm: 1000
+  num_layers: 32
+  num_vector_embeds: null
+  only_cross_attention: false
+  patch_size: 2
+  sample_size: 64
+  upcast_attention: false
+  use_linear_projection: false
+  video_length: 5
+  learn_sigma: true
+  window_size: [-1, 32, 32]
+  anchor_video_length: 5
+  use_additional_conditions: True
+video_length: 5
+num_frames: 5
+image_size: 512
+num_sampling_steps: 250
+frame_interval: 1
+fixed_spatial: false
+attention_bias: true
+learn_sigma: true
+extras: 78
+save_ceph: true
+use_image_num: 0
+use_video_num: 1
+learning_rate: 0.0005
+ckpt_every: 2000
+clip_max_norm: 0.1
+start_clip_iter: 500000
+local_batch_size: 1
+max_train_steps: 100000
+global_seed: 3407
+num_workers: 64
+log_every: 10
+lr_warmup_steps: 0
+resume_from_checkpoint: null
+gradient_accumulation_steps: 8
+num_classes: null
+use_wandb: false
+validation_before_training: true
+cfg_random_null_text_ratio: 0.1
+use_compile: false
+mixed_precision: false
+enable_xformers_memory_efficient_attention: false
+gradient_checkpointing: false
+
+validation:
+  video_length: 5
+  image_size:
+  - 512
+  - 512
+  beta_start: 0.0001
+  beta_end: 0.02
+  beta_schedule: linear
+  variance_type: learned_range
+  use_compile: false
+  use_fp16: true
+  seed: null
+  run_time: 0
+  guidance_scale: 15
+  sample_method: PNDM
+  num_sampling_steps: 300
+  enable_temporal_attentions: true
+  enable_vae_temporal_decoder: false
+  text_prompt:
+  - Yellow and black tropical fish dart through the sea.
+  - An epic tornado attacking above aglowing city at night.
+  - Slow pan upward of blazing oak fire in an indoor fireplace.
+  - a photo of an astronaut riding a horse on mars
+
